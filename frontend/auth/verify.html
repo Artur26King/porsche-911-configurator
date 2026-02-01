@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Email - Porsche 911 Dream</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="auth-card">
+      <h1>Verify Email</h1>
+      <p class="subtitle">Enter the 4-digit code</p>
+
+      <div id="errorMessage" class="error-message"></div>
+      <div id="successMessage" class="success-message"></div>
+
+      <form id="verifyForm">
+        <div class="form-group">
+          <label for="code">Verification Code</label>
+          <input 
+            type="text" 
+            id="code" 
+            name="code" 
+            placeholder="0000" 
+            required 
+            maxlength="4"
+            pattern="[0-9]{4}"
+            inputmode="numeric"
+          >
+        </div>
+
+        <button type="submit" class="btn" id="submitBtn">Verify</button>
+      </form>
+
+      <div class="link-text">
+        <a href="register.html">Back to Register</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    const form = document.getElementById('verifyForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const errorMessage = document.getElementById('errorMessage');
+    const codeInput = document.getElementById('code');
+
+    // Get stored email
+    const email = getStoredEmail();
+    if (!email) {
+      // Redirect to register if no email found
+      window.location.href = 'register.html';
+    }
+
+    // Only allow numeric input
+    codeInput.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/[^0-9]/g, '');
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const code = codeInput.value.trim();
+
+      if (code.length !== 4) {
+        showError('errorMessage', 'Code must be 4 digits');
+        return;
+      }
+
+      // Disable button
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Verifying...';
+
+      try {
+        const result = await verifyEmail(email, code);
+        
+        // Redirect to PIN creation page
+        setTimeout(() => {
+          window.location.href = 'pin.html';
+        }, 1000);
+      } catch (error) {
+        showError('errorMessage', error.message || 'Verification failed');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Verify';
+      }
+    });
+  </script>
+</body>
+</html>

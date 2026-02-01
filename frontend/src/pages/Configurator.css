@@ -1,0 +1,254 @@
+.configurator-page {
+  width: 100%;
+}
+
+.configurator-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+.configurator-layout .page-title {
+  order: 0;
+}
+
+.configurator-layout .config-preview {
+  order: 1;
+}
+
+.configurator-layout .page-intro {
+  order: 2;
+}
+
+.configurator-layout .config-options {
+  order: 3;
+}
+
+@media (min-width: 768px) {
+  .configurator-layout {
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: auto auto 1fr;
+  }
+
+  .configurator-layout .page-title {
+    grid-column: 1;
+    grid-row: 1;
+    order: unset;
+  }
+
+  .configurator-layout .page-intro {
+    grid-column: 1;
+    grid-row: 2;
+    order: unset;
+  }
+
+  .configurator-layout .config-options {
+    grid-column: 1;
+    grid-row: 3;
+    order: unset;
+  }
+
+  .configurator-layout .config-preview {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    order: unset;
+  }
+}
+
+.config-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.config-model-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin: 0;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .config-model-title {
+    font-size: 2rem;
+  }
+}
+
+.config-preview {
+  position: relative;
+  min-height: 72vh;
+  height: 72vh;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.config-preview-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  border-radius: var(--radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.config-preview:hover .config-preview-nav,
+.config-preview:focus-within .config-preview-nav {
+  opacity: 1;
+}
+
+.config-preview-nav:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.config-preview-prev {
+  left: var(--space-sm);
+}
+
+.config-preview-next {
+  right: var(--space-sm);
+}
+
+@media (hover: none) {
+  .config-preview-nav {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .config-preview-nav:active {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
+.config-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.config-preview--clickable {
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .config-preview {
+    min-height: 80vh;
+    height: 80vh;
+  }
+}
+
+.config-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.config-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.config-select {
+  width: 100%;
+  max-width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.config-select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.config-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: var(--space-xl);
+}
+
+.summary-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.summary-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.summary-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin: 0;
+}
+
+.btn-pay {
+  background: var(--accent);
+  color: var(--bg-dark);
+  padding: var(--space-md) var(--space-xl);
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.btn-pay:hover {
+  filter: brightness(1.1);
+}
+
+.btn-save {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+
+.btn-save:hover:not(:disabled) {
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.btn-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.save-message {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Porsche 911 Dream</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="auth-card">
+      <h1>Porsche 911 Dream</h1>
+      <p class="subtitle">Start Your Journey</p>
+
+      <div id="errorMessage" class="error-message"></div>
+
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="nickname">Nickname</label>
+          <input 
+            type="text" 
+            id="nickname" 
+            name="nickname" 
+            placeholder="Min 3 characters" 
+            required 
+            minlength="3"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="your@email.com" 
+            required
+          >
+        </div>
+
+        <button type="submit" class="btn" id="submitBtn">Register</button>
+      </form>
+
+      <div class="link-text">
+        Already have an account? <a href="login.html">Login</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    const form = document.getElementById('registerForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const errorMessage = document.getElementById('errorMessage');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const nickname = document.getElementById('nickname').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      // Basic validation
+      if (nickname.length < 3) {
+        showError('errorMessage', 'Nickname must be at least 3 characters');
+        return;
+      }
+
+      if (!email.includes('@')) {
+        showError('errorMessage', 'Email must contain @');
+        return;
+      }
+
+      // Disable button
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Registering...';
+
+      try {
+        const result = await register(nickname, email);
+        
+        // Store email for next step
+        storeEmail(email);
+        
+        // Redirect to verification page
+        window.location.href = 'verify.html';
+      } catch (error) {
+        showError('errorMessage', error.message || 'Registration failed');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Register';
+      }
+    });
+  </script>
+</body>
+</html>

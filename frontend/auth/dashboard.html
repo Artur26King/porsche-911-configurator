@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Porsche 911 Dream</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="dashboard">
+      <h1>Welcome to Your Dream</h1>
+
+      <div id="userInfo" class="user-info">
+        <p><strong>Nickname:</strong> <span id="nickname"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+        <p><strong>Status:</strong> <span id="status"></span></p>
+      </div>
+
+      <button class="btn logout-btn" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    // Check if user is logged in
+    const user = getStoredUser();
+    
+    if (!user) {
+      // Redirect to login if not authenticated
+      window.location.href = 'login.html';
+    } else {
+      // Display user info
+      document.getElementById('nickname').textContent = user.nickname;
+      document.getElementById('email').textContent = user.email;
+      document.getElementById('status').textContent = user.emailVerified ? 'Verified ✓' : 'Not Verified';
+    }
+
+    // Logout handler
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      clearUser();
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

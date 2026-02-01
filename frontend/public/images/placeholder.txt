@@ -1,0 +1,10 @@
+Add Porsche 911 images here (placeholder until real assets are added):
+
+- hero.jpg          — hero section background
+- model-carrera.jpg — 911 Carrera
+- model-carrera-s.jpg
+- model-carrera-4s.jpg
+- model-turbo.jpg   — 911 Turbo
+- model-gt3.jpg     — 911 GT3
+
+Use these paths in /frontend/src/data/models.js and in page CSS (e.g. background-image).

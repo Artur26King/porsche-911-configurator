@@ -1,0 +1,150 @@
+.models-page {
+  width: 100%;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 var(--space-sm);
+  color: var(--accent);
+}
+
+.page-intro {
+  color: var(--text-muted);
+  margin: 0 0 var(--space-xl);
+}
+
+.models-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .models-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.model-card {
+  background: var(--bg-card);
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 0 1px #000;
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: scale(0.95);
+}
+
+.model-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 0 3px #000, 0 4px 20px rgba(255, 255, 255, 0.4), 0 8px 32px rgba(255, 255, 255, 0.2);
+}
+
+@media (hover: none) {
+  .model-card:active {
+    transform: scale(1.02);
+  }
+}
+
+.model-card-image {
+  aspect-ratio: 3 / 1;
+  background: var(--border);
+  overflow: hidden;
+  position: relative;
+}
+
+.model-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+.model-card-body {
+  padding: var(--space-md);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.model-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text);
+}
+
+.model-description {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text);
+  margin: 0;
+}
+
+.model-tagline {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.model-specs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin: 0;
+}
+
+.model-spec-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.model-spec-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+.model-spec-value {
+  font-size: 0.75rem;
+  font-weight: normal;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.model-price {
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .model-description {
+    font-size: 0.9375rem;
+  }
+
+  .model-spec-label {
+    font-size: 0.9375rem;
+  }
+
+  .model-spec-value {
+    font-size: 0.8125rem;
+  }
+}
+
+.model-link {
+  margin-top: auto;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.model-link:hover {
+  text-decoration: underline;
+}

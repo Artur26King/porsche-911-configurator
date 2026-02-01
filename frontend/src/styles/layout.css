@@ -1,0 +1,27 @@
+/* Layout helpers — flex/grid, one column on mobile */
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding-inline: var(--space-md, 1rem);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--space-xl, 2rem);
+}
+
+.grid-1 { display: grid; grid-template-columns: 1fr; gap: var(--space-md, 1rem); }
+@media (min-width: 768px) {
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+}
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+.gap-lg { gap: var(--space-lg); }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }

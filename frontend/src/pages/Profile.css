@@ -1,0 +1,134 @@
+.profile-page {
+  width: 100%;
+}
+
+.profile-email {
+  color: var(--text-muted);
+  margin: 0 0 var(--space-md);
+  font-size: 0.95rem;
+}
+
+.profile-cta {
+  display: inline-block;
+  margin-bottom: var(--space-xl);
+}
+
+.saved-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 var(--space-md);
+  color: var(--text);
+}
+
+.profile-muted {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.profile-error {
+  color: #e74c3c;
+  margin: 0;
+}
+
+.config-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.config-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.config-quote {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.config-card-inner {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.config-card-inner:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.config-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--bg-dark);
+}
+
+.config-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.config-card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  gap: var(--space-sm);
+}
+
+.config-card-name {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 1.1rem;
+}
+
+.config-card-price {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+.config-card-delete {
+  align-self: flex-start;
+  margin: 0 var(--space-md) var(--space-md);
+  padding: var(--space-xs) var(--space-sm);
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.config-card-delete:hover:not(:disabled) {
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+.config-card-delete:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (min-width: 768px) {
+  .config-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-xl);
+  }
+}
