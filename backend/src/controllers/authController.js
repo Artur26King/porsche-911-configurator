@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import { isValidEmail, isValidNickname, isValidPIN } from '../utils/validation.js';
@@ -152,7 +152,7 @@ export async function setPassword(req, res) {
       return res.status(409).json({ error: 'User already registered. Use login instead.' });
     }
 
-    const passwordHash = await bcrypt.hash(trimmedPassword, SALT_ROUNDS);
+    const passwordHash = await bcryptjs.hash(trimmedPassword, SALT_ROUNDS);
 
     await User.create({
       nickname: pendingData.nickname,
@@ -182,7 +182,7 @@ export async function createPIN(req, res) {
 /**
  * 4. Login
  * - Find user by nickname OR email
- * - Compare password with stored bcrypt hash
+ * - Compare password with stored bcryptjs hash
  * - Return user only on correct credentials
  */
 export async function login(req, res) {
@@ -219,7 +219,7 @@ export async function login(req, res) {
       return res.status(403).json({ error: 'Account not set up. Please complete registration.' });
     }
 
-    const match = await bcrypt.compare(trimmedPassword, storedHash);
+    const match = await bcryptjs.compare(trimmedPassword, storedHash);
     if (!match) {
       return res.status(401).json({ error: 'Incorrect nickname, email, or password' });
     }
